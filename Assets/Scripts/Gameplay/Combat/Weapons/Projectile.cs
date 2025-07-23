@@ -6,7 +6,7 @@ public class Projectile : MonoBehaviour
     private Rigidbody rb;
     private bool hasHit = false;
 
-    [SerializeField] private float rotationOffset = 90f;
+    [SerializeField] private float rotationOffset = -90f;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -45,7 +45,7 @@ public class Projectile : MonoBehaviour
 
         // Stop physics
         Rigidbody rb = GetComponent<Rigidbody>();
-        rb.linearVelocity = Vector3.zero;
+        //rb.linearVelocity = Vector3.zero;
         rb.isKinematic = true;
 
         // Stick to the target

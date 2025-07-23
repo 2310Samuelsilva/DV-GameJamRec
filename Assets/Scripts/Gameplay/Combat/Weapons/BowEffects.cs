@@ -1,7 +1,9 @@
 using UnityEngine;
 
 public class BowEffects : MonoBehaviour
-{
+{   
+    private BowState bowState;
+    [SerializeField] private Animator playerAnimator;
     private LineRenderer lineRenderer;
     private float lineWidth = 0.05f;
     private float lineWidthEndFactor = 0.5f;
@@ -10,6 +12,8 @@ public class BowEffects : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        bowState = GetComponent<BowState>();
+
         lineRenderer = GetComponent<LineRenderer>();
         lineRenderer.positionCount = 2;
 
@@ -24,7 +28,14 @@ public class BowEffects : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if (bowState.IsCharging())
+        {
+            playerAnimator.SetBool("isCharging", true);
+        }
+        else
+        {
+            playerAnimator.SetBool("isCharging", false);
+        }
     }
     
     public void DisableChargeLine()

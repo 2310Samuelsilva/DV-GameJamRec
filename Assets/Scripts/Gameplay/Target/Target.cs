@@ -14,7 +14,7 @@ public class Target : MonoBehaviour
                 projectile.OnHitTarget(transform);
             }
 
-            GameManager.Instance.EndGame(); // or whatever event you're triggering
+            GameManager.Instance.EndGame(); 
         }
     }
 

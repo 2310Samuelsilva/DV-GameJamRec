@@ -49,7 +49,7 @@ public class Bow : MonoBehaviour
 
             // Direction: Following mouse path
             //Vector3 shootDirection = -(chargeEndScreenPosition - chargeStartScreenPosition).normalized;
-            Vector3 shootDirection = firePoint.right; //.right to shoot on the X axys
+            Vector3 shootDirection = -firePoint.forward; //.right to shoot on the X axys
 
             GameObject projectile = Instantiate(projectilePrefab, firePoint.position, firePoint.rotation);
             projectile.transform.parent = null;

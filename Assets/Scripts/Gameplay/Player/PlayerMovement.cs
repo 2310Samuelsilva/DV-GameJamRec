@@ -17,8 +17,11 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float fallMultiplier = 2.5f;
     [SerializeField] private float lowJumpMultiplier = 2f;
 
+    private Animator animator;
+
     void Start()
     {
+        animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
     }
 
@@ -33,31 +36,44 @@ public class PlayerMovement : MonoBehaviour
     }
 
     void FixedUpdate()
-{
-    isGrounded = IsGrounded();
-
-    // Move the player
-    rb.linearVelocity = new Vector3(moveSpeed * horizontalInput, rb.linearVelocity.y, 0);
-
-    // Jump
-    if (doJump && isGrounded)
     {
-        rb.linearVelocity = new Vector3(rb.linearVelocity.x, jumpForce, 0);
-    }
+        isGrounded = IsGrounded();
 
-    // Snappier falling
-    if (rb.linearVelocity.y < 0)
-    {
-        rb.linearVelocity += Vector3.up * Physics.gravity.y * (fallMultiplier - 1) * Time.fixedDeltaTime;
-    }
-    else if (rb.linearVelocity.y > 0 && !Input.GetButton("Jump"))
-    {
-        rb.linearVelocity += Vector3.up * Physics.gravity.y * (lowJumpMultiplier - 1) * Time.fixedDeltaTime;
-    }
+        // Calculate horizontal movement
+        float moveX = moveSpeed * horizontalInput;
 
-    doJump = false;
-}
+        // Move the player
+        rb.linearVelocity = new Vector3(moveX, rb.linearVelocity.y, 0);
 
+        // Set Speed parameter for Idle/Run animation
+        animator.SetFloat("speed", Mathf.Abs(horizontalInput));
+
+        // Jumping
+        if (doJump && isGrounded)
+        {   
+            Debug.Log("Jumping!");
+            rb.linearVelocity = new Vector3(rb.linearVelocity.x, jumpForce, 0);
+            animator.SetBool("isJumping", true); // trigger jump animation
+        }
+
+        // Falling faster
+        if (rb.linearVelocity.y < 0)
+        {
+            rb.linearVelocity += Vector3.up * Physics.gravity.y * (fallMultiplier - 1) * Time.fixedDeltaTime;
+        }
+        else if (rb.linearVelocity.y > 0 && !Input.GetButton("Jump"))
+        {
+            rb.linearVelocity += Vector3.up * Physics.gravity.y * (lowJumpMultiplier - 1) * Time.fixedDeltaTime;
+        }
+
+        // Update isJumping animation based on grounded check
+        if (isGrounded && rb.linearVelocity.y <= 0)
+        {
+            animator.SetBool("isJumping", false); // land
+        }
+
+        doJump = false;
+    }
     public bool IsGrounded()
     {
         return Physics.CheckSphere(groundCheck.position, groundCheckRadius, groundLayer);
