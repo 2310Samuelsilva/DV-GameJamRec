@@ -34,7 +34,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -58, y: -15.1}
+  m_AnchoredPosition: {x: -64.126, y: -15.1}
   m_SizeDelta: {x: 128.2512, y: 24.6083}
   m_Pivot: {x: 0, y: 0}
 --- !u!222 &4830270882272791968
@@ -65,7 +65,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Level XXX
+  m_text: Level X
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0e67e043d33f44984ab24ce2a9cbc7b8, type: 2}
   m_sharedMaterial: {fileID: -57861307945504847, guid: 0e67e043d33f44984ab24ce2a9cbc7b8, type: 2}
@@ -99,7 +99,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
+  m_HorizontalAlignment: 2
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -455,6 +455,7 @@ MonoBehaviour:
   chargeSlider: {fileID: 0}
   forceText: {fileID: 0}
   projectileCountText: {fileID: 0}
+  pauseScreen: {fileID: 0}
 --- !u!1 &3301758301557749386
 GameObject:
   m_ObjectHideFlags: 0
@@ -625,7 +626,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 1
-  m_AdditionalShaderChannelsFlag: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
@@ -1002,9 +1003,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: GameplayUIController, Assembly-CSharp
-        m_MethodName: ShowPauseMenu
+      - m_Target: {fileID: 4120939349096108485}
+        m_TargetAssemblyTypeName: UIGameplayManager, Assembly-CSharp
+        m_MethodName: PauseGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1351,7 +1352,7 @@ RectTransform:
   m_AnchorMin: {x: 0.31, y: 0.5}
   m_AnchorMax: {x: 0.31, y: 0.5}
   m_AnchoredPosition: {x: -268.5, y: 195.00003}
-  m_SizeDelta: {x: 151.5285, y: 48.7589}
+  m_SizeDelta: {x: 139.1108, y: 48.759}
   m_Pivot: {x: 0, y: 0}
 --- !u!222 &3530547264990135885
 CanvasRenderer:

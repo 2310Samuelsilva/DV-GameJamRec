@@ -17,4 +17,4 @@ MonoBehaviour:
   sceneName: Level1
   previewImage: {fileID: 0}
   isUnlocked: 1
-  timeToCompleteLevel: 5
+  timeToCompleteLevel: 60

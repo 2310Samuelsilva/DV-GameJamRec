@@ -17,6 +17,7 @@ public class UIGameplayManager : MonoBehaviour
 
     [Header("Projectile Info")]
     [SerializeField] private TMP_Text projectileCountText;
+    [SerializeField] protected GameObject pauseScreen;
 
 
 
@@ -43,9 +44,9 @@ public class UIGameplayManager : MonoBehaviour
         levelTtimer.text = time;
     }
 
-    public void ShowPauseMenu()
+    
+    public void PauseGame()
     {
-        //
-        Debug.Log("Show Pause Menu");
+        BaseLevelController.Instance.PauseGame();
     }
 }

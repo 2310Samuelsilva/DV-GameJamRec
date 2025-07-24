@@ -193,7 +193,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1116207664816580099}
   m_Layer: 10
-  m_Name: Environment
+  m_Name: EnvironmentTile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

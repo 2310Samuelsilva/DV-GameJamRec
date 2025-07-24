@@ -1,5 +1,7 @@
 using UnityEngine;
 using Unity.Cinemachine;
+using UnityEngine.Rendering;
+using System;
 
 public class BaseLevelController : MonoBehaviour
 {
@@ -8,11 +10,28 @@ public class BaseLevelController : MonoBehaviour
     [SerializeField] protected GameObject playerPrefab;
     [SerializeField] protected LevelData levelData;
 
+    [SerializeField] protected GameObject gameOverScreen;
+    [SerializeField] protected GameObject pauseScreen;
     protected bool timerIsRunning = false;
     protected float timeRemaining;
 
     protected bool levelCompleted = false;
 
+    private bool gamePaused = false;
+
+
+    public static BaseLevelController Instance { get; private set; }
+    protected virtual void Awake()
+    {
+        // Singleton pattern
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        Instance = this;
+    }
 
     void Update()
     {
@@ -32,14 +51,19 @@ public class BaseLevelController : MonoBehaviour
         }
     }
 
-   
+
 
 
     public virtual void StartLevel()
     {
         Debug.Log($"Level started: {levelData.levelName}");
-        UIGameplayManager.Instance.UpdateLevelUI(levelData.levelNumber);
 
+        HideGameOverScreen();
+        UnPauseGame();
+
+        levelCompleted = false;
+
+        UIGameplayManager.Instance.UpdateLevelUI(levelData.levelNumber);
         spawnPlayer();
         startTimer();
     }
@@ -61,7 +85,8 @@ public class BaseLevelController : MonoBehaviour
 
     void UpdateTimerDisplay(float time)
     {
-        int totalSeconds = Mathf.FloorToInt(time);
+        int totalSeconds = Math.Max(Mathf.FloorToInt(time), 0);
+
         UIGameplayManager.Instance.UpdateTimerUI(totalSeconds.ToString());
     }
 
@@ -80,10 +105,37 @@ public class BaseLevelController : MonoBehaviour
 
     public virtual void FailLevel()
     {
-
+        ShowGameOverScreen();
         if (levelCompleted) return;
 
-        levelCompleted = true;
-        GameManager.Instance.RestartLevel();
+    }
+
+
+
+    public void HideGameOverScreen()
+    {
+        gameOverScreen.SetActive(false);
+    }
+    public void ShowGameOverScreen()
+    {
+        gameOverScreen.SetActive(true);
+    }
+
+    public void UnPauseGame()
+    {
+        gamePaused = false;
+        Time.timeScale = 1f;
+        pauseScreen.SetActive(false);
+    }
+    public void PauseGame()
+    {
+        gamePaused = true;
+        Time.timeScale = 0f;
+        pauseScreen.SetActive(true);
+    }
+    
+    public bool IsGamePaused()
+    {
+        return gamePaused;
     }
 }

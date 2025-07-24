@@ -29,7 +29,8 @@ public class Bow : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if (BaseLevelController.Instance.IsGamePaused()) { return; }
+        
         Vector3 currentMousePosition = Input.mousePosition;
         float chargeForce = CalculateChargeForce(currentMousePosition);
 
