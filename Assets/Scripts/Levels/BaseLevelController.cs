@@ -1,16 +1,15 @@
 using UnityEngine;
+using Unity.Cinemachine;
 
 public class BaseLevelController : MonoBehaviour
 {
     [SerializeField] protected Transform playerSpawnPoint;
+    [SerializeField] protected CinemachineCamera cinemachineCam;
     [SerializeField] protected GameObject playerPrefab;
     [SerializeField] protected LevelData levelData;
 
-    protected bool timerIsRunning = true;
+    protected bool timerIsRunning = false;
     protected float timeRemaining;
-
-
-
 
     protected bool levelCompleted = false;
 
@@ -55,18 +54,20 @@ public class BaseLevelController : MonoBehaviour
 
     private void spawnPlayer()
     {
-        Instantiate(playerPrefab, playerSpawnPoint.position, playerSpawnPoint.rotation);
+        GameObject player = Instantiate(playerPrefab, playerSpawnPoint.position, playerSpawnPoint.rotation);
+        cinemachineCam.Follow = player.transform;
+        cinemachineCam.LookAt = player.transform;
     }
 
     void UpdateTimerDisplay(float time)
     {
-        int minutes = Mathf.FloorToInt(time / 60);
-        int seconds = Mathf.FloorToInt(time % 60);
-        UIGameplayManager.Instance.UpdateTimerUI(string.Format("{0:00}:{1:00}", minutes, seconds));
+        int totalSeconds = Mathf.FloorToInt(time);
+        UIGameplayManager.Instance.UpdateTimerUI(totalSeconds.ToString());
     }
 
     void TimerEnded()
     {
+        Debug.Log("Time Ended!");
         FailLevel();
     }
     public virtual void CompleteLevel()
@@ -79,6 +80,7 @@ public class BaseLevelController : MonoBehaviour
 
     public virtual void FailLevel()
     {
+
         if (levelCompleted) return;
 
         levelCompleted = true;

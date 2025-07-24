@@ -5,7 +5,7 @@ public class Level1Controller : BaseLevelController
 
     void Start()
     {
-       // StartLevel();
+       StartLevel();
     }
 
     public override void StartLevel()

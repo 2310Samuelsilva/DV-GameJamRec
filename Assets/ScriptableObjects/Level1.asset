@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: Level1
   m_EditorClassIdentifier: 
   levelName: Level 1
+  levelNumber: 1
   sceneName: Level1
   previewImage: {fileID: 0}
   isUnlocked: 1
+  timeToCompleteLevel: 5
