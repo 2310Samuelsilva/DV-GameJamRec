@@ -28,9 +28,10 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         horizontalInput = Input.GetAxis("Horizontal");
-
+        Debug.Log("Horizontal input: " + horizontalInput);
         if (Input.GetButtonDown("Jump"))
         {
+            Debug.Log("Jump input");
             doJump = true;
         }
     }

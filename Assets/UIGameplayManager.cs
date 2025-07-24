@@ -38,15 +38,9 @@ public class UIGameplayManager : MonoBehaviour
         levelText.text = $"Level: {level}";
     }
 
-    public void UpdateChargeUI(float currentForce, float maxForce)
+    public void UpdateTimerUI(string time)
     {
-        chargeSlider.value = currentForce / maxForce;
-        forceText.text = $"{currentForce:F2}";
-    }
-
-    public void UpdateProjectileCount(int count)
-    {
-        projectileCountText.text = $"Projectiles: {count}";
+        levelTtimer.text = time;
     }
 
     public void ShowPauseMenu()
