@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
 
     public LevelList levelList; // Assign via inspector
     public int currentLevelIndex = 0;
+    public int levelPositionZ = 0;
 
     private void Awake()
     {

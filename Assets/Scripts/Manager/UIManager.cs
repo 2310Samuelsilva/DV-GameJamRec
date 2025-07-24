@@ -45,12 +45,12 @@ public class UIManager : MonoBehaviour
 
     public void UpdateLevelUI(int level)
     {
-        GameplayUIController.Instance.UpdateLevelUI(level);
+        UIGameplayManager.Instance.UpdateLevelUI(level);
     }
     
     public void UpdateChargeBar(float currentForce, float maxForce)
     {
-        GameplayUIController.Instance.UpdateChargeUI(currentForce, maxForce);    
+        UIGameplayManager.Instance.UpdateChargeUI(currentForce, maxForce);    
     }
     
 }

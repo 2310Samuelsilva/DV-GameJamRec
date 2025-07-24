@@ -10,7 +10,7 @@ public class Projectile : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        Invoke(nameof(DestroyArrow), 5f);
+        Invoke(nameof(DestroyProjectile), 5f);
         rb = GetComponent<Rigidbody>();
     }
 
@@ -30,7 +30,7 @@ public class Projectile : MonoBehaviour
         }
     }
 
-    private void DestroyArrow()
+    private void DestroyProjectile()
     {
         if (!hasHit)
         {
@@ -41,7 +41,7 @@ public class Projectile : MonoBehaviour
     public void OnHitTarget(Transform target)
     {
         hasHit = true;
-        CancelInvoke(nameof(DestroyArrow));
+        CancelInvoke(nameof(DestroyProjectile));
 
         // Stop physics
         Rigidbody rb = GetComponent<Rigidbody>();
@@ -49,7 +49,7 @@ public class Projectile : MonoBehaviour
         rb.isKinematic = true;
 
         // Stick to the target
-        transform.SetParent(target);
+        //transform.SetParent(target);
     }
 
 }
