@@ -38,6 +38,11 @@ public class Projectile : MonoBehaviour
         }
     }
 
+    void StopProjectile(Rigidbody rb)
+    {
+        rb.isKinematic = true;
+    }
+
     public void OnHitTarget(Transform target)
     {
         hasHit = true;
@@ -45,11 +50,18 @@ public class Projectile : MonoBehaviour
 
         // Stop physics
         Rigidbody rb = GetComponent<Rigidbody>();
-        //rb.linearVelocity = Vector3.zero;
-        rb.isKinematic = true;
-
         // Stick to the target
+        StopProjectile(rb);
+
+        
         //transform.SetParent(target);
+    }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        Debug.Log("Collision with " + collision.gameObject.name);
+        Rigidbody rb = GetComponent<Rigidbody>();
+        StopProjectile(rb);
     }
 
 }

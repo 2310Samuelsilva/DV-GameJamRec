@@ -1,11 +1,11 @@
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class Bow : MonoBehaviour
+public class Weapon : MonoBehaviour
 {
 
-    private BowState bowState;
-    private BowEffects bowEffects;
+    private WeaponState weaponState;
+    private WeaponEffects weaponEffects;
     [SerializeField] Transform firePoint;
     [SerializeField] GameObject projectilePrefab;
 
@@ -22,8 +22,8 @@ public class Bow : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        bowState = GetComponent<BowState>();
-        bowEffects = GetComponent<BowEffects>();
+        weaponState = GetComponent<WeaponState>();
+        weaponEffects = GetComponent<WeaponEffects>();
     }
 
     // Update is called once per frame
@@ -34,18 +34,18 @@ public class Bow : MonoBehaviour
         Vector3 currentMousePosition = Input.mousePosition;
         float chargeForce = CalculateChargeForce(currentMousePosition);
 
-        // Start charging Bow
+        // Start charging Weapon
         if (Input.GetButton("Fire1"))
         {
-            if (!bowState.IsCharging())
+            if (!weaponState.IsCharging())
             {
                 chargeStartScreenPosition = Input.mousePosition;
-                bowState.StartCharging();
+                weaponState.StartCharging();
             }
         }
 
-        // Stop charging Bow -> Fire projectile
-        if (Input.GetButtonUp("Fire1") && bowState.IsCharging())
+        // Stop charging Weapon -> Fire projectile
+        if (Input.GetButtonUp("Fire1") && weaponState.IsCharging())
         {
 
             // Direction: Following mouse path
@@ -58,18 +58,18 @@ public class Bow : MonoBehaviour
             projectile.transform.parent = null;
             projectile.GetComponent<Rigidbody>().AddForce(shootDirection * chargeForce, ForceMode.Impulse);
 
-            bowState.StopCharging();
+            weaponState.StopCharging();
         }
 
 
-        // Actions dependent on BowState
-        if (bowState.IsCharging())
+        // Actions dependent on WeaponState
+        if (weaponState.IsCharging())
         {
-            bowEffects.DrawChargeCursosLine(chargeStartScreenPosition, currentMousePosition);
+            weaponEffects.DrawChargeCursosLine(chargeStartScreenPosition, currentMousePosition);
         }
         else
         {
-            bowEffects.DisableChargeLine();
+            weaponEffects.DisableChargeLine();
         }
 
         //UIManager.Instance.UpdateChargeBar(chargeForce, maxForce);
@@ -78,7 +78,7 @@ public class Bow : MonoBehaviour
 
     private float CalculateChargeForce(Vector3 chargeEndScreenPosition)
     {
-        if (!bowState.IsCharging() || chargeEndScreenPosition == null || chargeStartScreenPosition == null)
+        if (!weaponState.IsCharging() || chargeEndScreenPosition == null || chargeStartScreenPosition == null)
         {
             return 0f;
 

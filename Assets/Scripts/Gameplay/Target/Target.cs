@@ -12,9 +12,10 @@ public class Target : MonoBehaviour
             if (projectile != null)
             {
                 projectile.OnHitTarget(transform);
+                BaseLevelController.Instance.TargetHit(this); 
             }
 
-            GameManager.Instance.EndGame(); 
+            
         }
     }
 

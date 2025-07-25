@@ -184,7 +184,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1819831676503909121}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 9620856af6e174564acd2517a1021494, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -213,15 +213,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 5
-  jumpForce: 9
+  jumpForce: 20.7
   isGrounded: 0
   groundCheck: {fileID: 5120324813730617825}
   groundCheckRadius: 0.2
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
-  fallMultiplier: 7
-  lowJumpMultiplier: 3
+  fallMultiplier: 14.42
+  lowJumpMultiplier: 9.96
 --- !u!54 &7942852346658360808
 Rigidbody:
   m_ObjectHideFlags: 0

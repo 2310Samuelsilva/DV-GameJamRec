@@ -125,7 +125,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4db47efa0a1cd467da0c47a109e23feb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bowWeapon: {fileID: 941901038902655691}
+  weapon: {fileID: 941901038902655691}
   centerPivot: {fileID: 5249157228031270380}
   radius: 0.05
 --- !u!114 &5536504415923215608
@@ -158,7 +158,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerAnimator: {fileID: 0}
-  lineColor: {r: 0, g: 0, b: 0, a: 1}
+  lineColor: {r: 0.38926172, g: 1, b: 0, a: 1}
 --- !u!120 &7441345233149100286
 LineRenderer:
   serializedVersion: 2

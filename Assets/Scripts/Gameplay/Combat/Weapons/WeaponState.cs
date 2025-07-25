@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class BowState : MonoBehaviour
+public class WeaponState : MonoBehaviour
 {
     private bool isCharging = false;
 
@@ -18,7 +18,7 @@ public class BowState : MonoBehaviour
     public void StartCharging()
     {
         isCharging = true;
-        Debug.Log("Start charging bow!");
+        Debug.Log("Start charging weapon!");
     }
 
     public void StopCharging()

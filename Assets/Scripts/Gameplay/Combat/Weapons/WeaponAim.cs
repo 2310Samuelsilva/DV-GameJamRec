@@ -1,31 +1,31 @@
 using UnityEngine;
 
-public class BowOrbit : MonoBehaviour
+public class WeaponAim : MonoBehaviour
 {
 
-    private BowState bowState;
+    private WeaponState weaponState;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    public Transform bowWeapon; // The actual weapon to rotate
+    public Transform weapon; // The actual weapon to rotate
     public Transform centerPivot; // The shoulder or central pivot
-    public float radius = 0.5f;   // Distance from center to bow
+    public float radius = 0.5f;   // Distance from center to weapon
 
 
     void Start()
     {
-        bowState = GetComponent<BowState>();
+        weaponState = GetComponent<WeaponState>();
     }
 
 
     private void Update()
     {
-        // if (!bowState.IsCharging())
+        // if (!weaponState.IsCharging())
         // {
-        //     AimBow();
+        //     AimWeapon();
         // }
-        AimBow();
+        AimWeapon();
     }
 
-    private void AimBow()
+    private void AimWeapon()
     {
         if (centerPivot == null) return;
 
@@ -47,13 +47,13 @@ public class BowOrbit : MonoBehaviour
         Vector3 direction = -(mouseWorldPosition - centerForDirection).normalized;
         //Debug.Log("Direction: " + direction);
         // New position along the orbit
-        bowWeapon.position = centerPivot.position + direction * radius;
+        weapon.position = centerPivot.position + direction * radius;
 
 
         // Rotaion - Point to goal
         Vector3 aimDirection = -(mouseWorldPosition - centerPivot.position);
         float angle = Mathf.Atan2(aimDirection.y, aimDirection.x) * Mathf.Rad2Deg;
-        bowWeapon.rotation = Quaternion.Euler(0, 0, angle);
+        weapon.rotation = Quaternion.Euler(0, 0, angle);
     }
 
     private void OnDrawGizmos()

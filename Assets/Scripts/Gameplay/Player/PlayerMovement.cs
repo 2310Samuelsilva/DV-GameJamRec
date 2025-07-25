@@ -17,22 +17,36 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float fallMultiplier = 2.5f;
     [SerializeField] private float lowJumpMultiplier = 2f;
 
+    private WeaponState weaponState;
     private Animator animator;
 
     void Start()
     {
+        weaponState = GetComponentInChildren<WeaponState>();
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
     }
 
     void Update()
     {
+        // Do nothing if charging
+        if (weaponState.IsCharging())
+        {
+            StopMoving();
+            return;
+        }
         horizontalInput = Input.GetAxis("Horizontal");
         
         if (Input.GetButtonDown("Jump"))
         {
             doJump = true;
         }
+    }
+
+    void StopMoving()
+    {
+        horizontalInput = 0;
+        doJump = false;
     }
 
     void FixedUpdate()

@@ -48,5 +48,6 @@ MonoBehaviour:
   - {fileID: 8695308568591826185, guid: badc91d4af1d74cf18e96e3d74fff198, type: 3}
   - {fileID: 8695308568591826185, guid: badc91d4af1d74cf18e96e3d74fff198, type: 3}
   - {fileID: 8695308568591826185, guid: badc91d4af1d74cf18e96e3d74fff198, type: 3}
-  cameraTransform: {fileID: 0}
-  recycleDistance: -25
+  recycleOffset: 30
+  manualTileWidth: 20
+  player: {fileID: 0}
