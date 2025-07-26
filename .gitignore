@@ -23,3 +23,7 @@ MemoryCaptures/
 *.opendb
 .DS_Store
 Thumbs.db
+Build*
+MACOS*
+GameJamRec_Build_WINDOWS_202200315_SamuelSilva.zip
+GameJamSource_202200315_SamuelSilva.zip

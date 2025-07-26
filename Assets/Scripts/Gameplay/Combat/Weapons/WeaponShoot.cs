@@ -59,6 +59,7 @@ public class Weapon : MonoBehaviour
             projectile.GetComponent<Rigidbody>().AddForce(shootDirection * chargeForce, ForceMode.Impulse);
 
             weaponState.StopCharging();
+            //weaponEffects.PlayShootEffect();
         }
 
 

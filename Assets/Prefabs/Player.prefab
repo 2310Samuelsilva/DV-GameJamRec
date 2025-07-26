@@ -213,15 +213,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 5
-  jumpForce: 20.7
+  jumpForce: 10
   isGrounded: 0
   groundCheck: {fileID: 5120324813730617825}
   groundCheckRadius: 0.2
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
-  fallMultiplier: 14.42
-  lowJumpMultiplier: 9.96
+  fallMultiplier: 4
+  lowJumpMultiplier: 2
 --- !u!54 &7942852346658360808
 Rigidbody:
   m_ObjectHideFlags: 0

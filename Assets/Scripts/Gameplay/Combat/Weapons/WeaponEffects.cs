@@ -1,9 +1,10 @@
 using UnityEngine;
 
 public class WeaponEffects : MonoBehaviour
-{   
+{
     private WeaponState weaponState;
     [SerializeField] private Animator playerAnimator;
+    //[SerializeField] private ParticleSystem shootEffect;
     private LineRenderer lineRenderer;
     private float lineWidth = 0.05f;
     private float lineWidthEndFactor = 0.5f;
@@ -37,9 +38,11 @@ public class WeaponEffects : MonoBehaviour
             playerAnimator.SetBool("isCharging", false);
         }
     }
-    
+
     public void DisableChargeLine()
     {
+        if (lineRenderer == null) return;
+
         lineRenderer.enabled = false;
     }
 
@@ -56,6 +59,11 @@ public class WeaponEffects : MonoBehaviour
 
         lineRenderer.SetPosition(0, worldStart);
         lineRenderer.SetPosition(1, worldEnd);
-        
+
+    }
+    
+    public void PlayShootEffect()
+    {
+        //shootEffect.Play();
     }
 }
